@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>科幻科技夏令营 2025 - 深圳科幻基金官方项目</title>
+  <style>
+    /* 全局样式 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    body {
+      background-color: #0a0e17;
+      color: #e0f2ff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* 背景动画：星空与粒子流 */
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(circle at 40% 70%, rgba(255,255,255,0.06) 1px, transparent 1px),
+        radial-gradient(circle at 90% 60%, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 100px 100px, 80px 80px, 120px 120px, 150px 150px;
+      animation: twinkle 6s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
+    /* 头部导航 */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      background: rgba(10,14,23,0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #1a3c6e;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00d4ff;
+      text-shadow: 0 0 10px #00d4ff;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #b0dfff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00d4ff;
+    }
+
+    /* 主视觉区域 */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      color: white;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(rgba(0, 0, 30, 0.7), rgba(0, 20, 40, 0.9)), url('https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png');
+      background-blend-mode: overlay;
+      background-position: center;
+      background-size: cover;
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 15px rgba(0, 212, 255, 0.8);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      max-width: 900px;
+      margin-bottom: 2rem;
+      color: #a0d8ff;
+    }
+
+    .cta-button {
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, #00aaff, #00d4ff);
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+    }
+
+    /* 栏目内容区 */
+    .section {
+      padding: 6rem 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #00d4ff;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #a0d8ff;
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 四大核心板块 */
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .module-card {
+      background: rgba(30, 60, 100, 0.4);
+      border: 1px solid #1a3c6e;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+    }
+
+    .module-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+    }
+
+    .module-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .module-content {
+      padding: 1.8rem 1.5rem;
+    }
+
+    .module-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #80e8ff;
+    }
+
+    .module-content p {
+      color: #c0dfff;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+    }
+
+    .watch-video {
+      display: inline-block;
+      color: #00d4ff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+      border-bottom: 1px dashed #00d4ff;
+      transition: all 0.3s;
+    }
+
+    .watch-video:hover {
+      border-bottom: 1px solid transparent;
+      color: #fff;
+      text-shadow: 0 0 5px #00d4ff;
+    }
+
+    /* 日程安排 */
+    .schedule {
+      background: rgba(20, 40, 70, 0.5);
+      padding: 3rem;
+      border-radius: 25px;
+      border: 1px solid #1a3c6e;
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.1);
+    }
+
+    .timeline {
+      position: relative;
+      margin: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: #00d4ff;
+      border-radius: 10px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      padding-left: 50px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 12px;
+      top: 8px;
+      width: 20px;
+      height: 20px;
+      background: #00aaff;
+      border: 4px solid #000;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .timeline-day {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: #00d4ff;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-desc {
+      background: rgba(10, 20, 40, 0.6);
+      padding: 1rem;
+      border-radius: 12px;
+      border-left: 3px solid #00d4ff;
+    }
+
+    /* 报名表单 */
+    .enroll-form {
+      background: rgba(20, 40, 70, 0.6);
+      padding: 2.8rem;
+      border-radius: 25px;
+      border: 1px solid #1a3c6e;
+      max-width: 680px;
+      margin: 0 auto;
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.6rem;
+      color: #b0dfff;
+      font-size: 1.1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem;
+      background: rgba(10, 20, 40, 0.6);
+      border: 1px solid #00aaff;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      font-size: 1.3rem;
+      background: linear-gradient(90deg, #0088cc, #00aaff);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+    }
+
+    .submit-btn:hover {
+      background: linear-gradient(90deg, #00aaff, #00d4ff);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+    }
+
+    /* 合作单位与认证标识 */
+    .certification {
+      text-align: center;
+      margin-top: 3rem;
+      color: #a0d8ff;
+    }
+
+    .certification p {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .partners {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .partner-logo {
+      height: 60px;
+      filter: brightness(0.8) contrast(1.2);
+      transition: filter 0.3s;
+    }
+
+    .partner-logo:hover {
+      filter: brightness(1.2);
+    }
+
+    /* 页脚 */
+    footer {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      background: rgba(5, 10, 20, 0.95);
+      border-top: 1px solid #1a3c6e;
+      color: #70a0d0;
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      margin: 1.5rem 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: #a0d8ff;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #00d4ff;
+      text-shadow: 0 0 5px #00d4ff;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      nav ul {
+        gap: 1rem;
+        font-size: 0.95rem;
+      }
+      .section-title {
+        font-size: 2.2rem;
+      }
+      .enroll-form {
+        padding: 2rem;
+      }
+      .timeline::before {
+        left: 15px;
+      }
+      .timeline-item {
+        padding-left: 45px;
+      }
+      .timeline-dot {
+        left: 7px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 星空背景 -->
+  <div class="stars"></div>
+
+  <!-- 导航栏 -->
+  <header>
+    <div class="logo">SciCamp 2025</div>
+    <nav>
+      <ul>
+        <li><a href="#home">首页</a></li>
+        <li><a href="#modules">四大主题</a></li>
+        <li><a href="#schedule">日程安排</a></li>
+        <li><a href="#enroll">立即报名</a></li>
+        <li><a href="#contact">联系我们</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 主视觉 -->
+  <section id="home" class="hero">
+    <h1>深圳科幻基金 · 科幻科技夏令营 2025</h1>
+    <p>融合电影特效、脑科学、航天工程与天文观测的未来青少年成长计划</p>
+    <button class="cta-button">开启探索之旅</button>
+  </section>
+
+  <!-- 四大核心主题模块 -->
+  <section id="modules" class="section">
+    <h2 class="section-title">🚀 四大核心主题</h2>
+    <p class="section-subtitle">
+      由中国科学院专家、影视特效工程师、航天科普导师联合设计课程，理论+实践+创造三位一体
+    </p>
+    <div class="modules">
+      <!-- 主题一：科幻电影特效制作 -->
+      <div class="module-card">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="电影特效制作" class="module-img">
+        <div class="module-content">
+          <h3>🎬 电影特效工坊</h3>
+          <p>学习绿幕抠像、动态追踪、粒子模拟等技术，使用专业软件（Blender+After Effects）创作属于自己的30秒科幻短片。</p>
+          <a href="#" class="watch-video" data-video="effects">▶ 观看往期作品集</a>
+        </div>
+      </div>
+
+      <!-- 主题二：解密大脑结构 -->
+      <div class="module-card">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="大脑神经科学" class="module-img">
+        <div class="module-content">
+          <h3>🧠 解密大脑结构</h3>
+          <p>通过3D模型与VR体验神经元连接，动手制作“人工脑”电路装置，理解AI如何模仿人类思维。</p>
+          <a href="#" class="watch-video" data-video="brain">▶ 观看实验课堂实录</a>
+        </div>
+      </div>
+
+      <!-- 主题三：航天体验 -->
+      <div class="module-card">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="航天模拟器" class="module-img">
+        <div class="module-content">
+          <h3>🛰️ 航天任务模拟</h3>
+          <p>进入全息驾驶舱，执行“火星登陆”任务；组装小型固体燃料火箭并实地发射。</p>
+          <a href="#" class="watch-video" data-video="space">▶ 观看发射现场视频</a>
+        </div>
+      </div>
+
+      <!-- 主题四：仰望星空 -->
+      <div class="module-card">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="夜间观星" class="module-img">
+        <div class="module-content">
+          <h3>🌌 仰望星空计划</h3>
+          <p>使用天文望远镜观测木星卫星与深空星云，学习星座图谱与宇宙演化史，亲手绘制“我的星图”。</p>
+          <a href="#" class="watch-video" data-video="stars">▶ 观看夜空延时摄影</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 日程安排 -->
+  <section id="schedule" class="section">
+    <h2 class="section-title">📅 一周沉浸式日程</h2>
+    <div class="schedule">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-day">周一｜启程：未来已来</div>
+          <div class="timeline-desc">开营仪式 · 分组破冰 · 发布“星际任务手册” · 特效基础课</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-day">周二｜探索：大脑与AI</div>
+          <div class="timeline-desc">VR神经漫游 · 制作生物电传感器 · 编程训练“思维机器人”</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-day">周三｜挑战：航天总动员</div>
+          <div class="timeline-desc">火箭原理课 · 模拟发射控制台 · 小组火箭组装与试射</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-day">周四｜创造：我的科幻片</div>
+          <div class="timeline-desc">分镜设计 · 绿幕拍摄 · 后期合成 · 作品初审</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-day">周五｜仰望：星辰大海</div>
+          <div class="timeline-desc">白天观日珥 · 夜间观星会 · 星图手绘 · 宇宙故事分享</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-day">周六｜展示：成果发布会</div>
+          <div class="timeline-desc">家长开放日 · 作品展映 · 颁发“深空探索者”认证证书</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 报名表单 -->
+  <section id="enroll" class="section">
+    <h2 class="section-title">📝 立即报名</h2>
+    <form class="enroll-form" id="registrationForm">
+      <div class="form-group">
+        <label for="name">孩子姓名</label>
+        <input type="text" id="name" required placeholder="请输入孩子全名">
+      </div>
+      <div class="form-group">
+        <label for="age">年龄</label>
+        <input type="number" id="age" min="8" max="16" required placeholder="建议8-16岁">
+      </div>
+      <div class="form-group">
+        <label for="grade">所在年级</label>
+        <select id="grade" required>
+          <option value="">请选择</option>
+          <option value="primary">小学（4-6年级）</option>
+          <option value="junior">初中</option>
+          <option value="senior">高中</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="parent">家长姓名</label>
+        <input type="text" id="parent" required placeholder="监护人姓名">
+      </div>
+      <div class="form-group">
+        <label for="phone">联系电话</label>
+        <input type="tel" id="phone" required placeholder="用于接收确认信息">
+      </div>
+      <div class="form-group">
+        <label for="email">电子邮箱</label>
+        <input type="email" id="email" placeholder="接收活动资料包">
+      </div>
+      <div class="form-group">
+        <label for="interest">最感兴趣的主题</label>
+        <select id="interest">
+          <option value="all">全部都很感兴趣！</option>
+          <option value="effects">电影特效制作</option>
+          <option value="brain">解密大脑结构</option>
+          <option value="space">航天体验</option>
+          <option value="stars">仰望星空</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">备注 / 特殊需求</label>
+        <textarea id="message" rows="3" placeholder="如过敏史、希望结伴报名等..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">提交报名申请</button>
+    </form>
+
+    <div class="certification">
+      <p>✅ 本项目由「深圳科幻发展基金」官方支持，结业颁发认证证书</p>
+      <div class="partners">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="深圳科幻基金" class="partner-logo" style="height:50px;">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="中科院深圳先进院" class="partner-logo">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="腾讯教育" class="partner-logo">
+        <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="大疆创新" class="partner-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系我们 -->
+  <section id="contact" class="section">
+    <h2 class="section-title">📞 联系我们</h2>
+    <p style="text-align:center; color:#a0d8ff; max-width:700px; margin:0 auto 2rem;">
+      如有疑问，请通过以下方式咨询，我们将为您详细解答：<br>
+      📧 邮箱 camp@szscifi.org<br>
+      📞 电话 0755-8888 9999（工作日 9:00-18:00）<br>
+      💬 微信客服 扫码添加【深空小助手】获取最新资讯
+    </p>
+    <div style="text-align:center; margin-top:1.5rem;">
+      <img src="https://bailian-bmp-pre.oss-cn-hangzhou.aliyuncs.com/public/system_agentPlaceHolder.png" alt="微信客服二维码" style="width:180px; height:180px; border-radius:15px; border:1px solid #00aaff;">
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer>
+    <p>© 2025 深圳科幻发展基金 · 科幻科技夏令营 官方指定青少年科学教育项目</p>
+    <div class="footer-links">
+      <a href="#">隐私政策</a>
+      <a href="#">安全守则</a>
+      <a href="#">常见问题</a>
+      <a href="#">师资介绍</a>
+      <a href="#">往期回顾</a>
+    </div>
+    <p style="margin-top:1rem; font-size:0.85rem;">数据支持：阿里云 | 内容合作：央视少儿《科学探梦》栏目</p>
+  </footer>
+
+  <script>
+    // 页面内锚点平滑滚动
+    document.querySelectorAll('nav a, .cta-button').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 90,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // 视频弹窗模拟
+    document.querySelectorAll('.watch-video').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const videoType = this.getAttribute('data-video');
+        let videoTitle = '';
+        switch(videoType) {
+          case 'effects': videoTitle = '往期学员科幻短片合集'; break;
+          case 'brain': videoTitle = 'VR大脑探秘课堂实录'; break;
+          case 'space': videoTitle = '火箭发射现场精彩瞬间'; break;
+          case 'stars': videoTitle = '夜间观星延时摄影记录'; break;
+        }
+        alert(`即将播放视频：\n\n${videoTitle}\n\n（此处可集成视频播放器或跳转至B站/YouTube官方频道）`);
+      });
+    });
+
+    // 表单提交处理
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const age = parseInt(document.getElementById('age').value);
+      const phone = document.getElementById('phone').value.trim();
+
+      if (!name || !phone || isNaN(age)) {
+        alert('请完整填写必填信息！');
+        return;
+      }
+      if (age < 8 || age > 16) {
+        alert('建议年龄为8-16岁');
+        return;
+      }
+
+      alert(`感谢您的报名申请！${name} 的家长，我们的工作人员将在24小时内与您联系，请保持电话畅通。\n\n您将收到一封确认邮件，内含营前准备清单。`);
+      this.reset();
+    });
+
+    // 添加视差背景效果
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      hero.style.backgroundPosition = `center ${scrolled * 0.3}px`;
+    });
+  </script>
+
+</body>
+</html>
